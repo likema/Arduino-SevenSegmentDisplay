@@ -1,0 +1,25 @@
+#############################################
+# Syntax Coloring Map For SevenSegmentDisplay
+#############################################
+
+#############################################
+# Datatypes (KEYWORD1)
+#############################################
+
+SevenSegmentDisplay KEYWORD1
+UniDigit            KEYWORD1
+BiDigit             KEYWORD1
+TriDigit            KEYWORD1
+QuadriDigit         KEYWORD1
+
+#############################################
+# Methods and Functions (KEYWORD2)
+#############################################
+
+print               KEYWORD2
+clear               KEYWORD2
+
+#############################################
+# Constants (LITERAL1)
+#############################################
+
