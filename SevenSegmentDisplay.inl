@@ -7,13 +7,13 @@ template <byte D1>
 byte UniDigit<D1>::pin[] = { D1 };
 
 template <byte D1, byte D2>
-byte BiDigit<D1, D2>::pin[] = { D1, D2 };
+byte BiDigit<D1, D2>::pin[] = { D2, D1 };
 
 template <byte D1, byte D2, byte D3>
-byte TriDigit<D1, D2, D3>::pin[] = { D1, D2, D3 };
+byte TriDigit<D1, D2, D3>::pin[] = { D3, D2, D1 };
 
 template <byte D1, byte D2, byte D3, byte D4>
-byte QuadriDigit<D1, D2, D3, D4>::pin[] = { D1, D2, D3, D4 };
+byte QuadriDigit<D1, D2, D3, D4>::pin[] = { D4, D3, D2, D1 };
 
 template <byte N>
 struct UpperBound;
