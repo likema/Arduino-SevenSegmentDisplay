@@ -25,7 +25,8 @@ void setup() {
 }
 
 void loop() {
-	for (int i = 9; i >= 0; --i) {
-		ss.print(i, 1000);
-	}
+	unsigned i = 9;
+	do {
+		ss.print(i, 2000);
+	} while (i--);
 }
