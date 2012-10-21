@@ -48,7 +48,7 @@ struct QuadriDigit {
 	static byte pin[N];
 };
 
-template <boolean ANODE, typename DIGITS>
+template <boolean ANODE, typename DIGITS, unsigned DELAY = 20>
 class SevenSegmentDisplay {
 public:
 	SevenSegmentDisplay(byte a, byte b, byte c, byte d, byte e, byte f, byte g, byte dp);

@@ -67,8 +67,8 @@ byte SegmentTrait<false>::digit[] = {
 	DIGIT_DEF(1, 1, 1, 1, 0, 1, 1),
 };
 
-template <boolean ANODE, typename DIGITS>
-SevenSegmentDisplay<ANODE, DIGITS>::SevenSegmentDisplay(byte a, byte b, byte c, byte d, byte e, byte f, byte g, byte dp)
+template <boolean ANODE, typename DIGITS, unsigned DELAY>
+SevenSegmentDisplay<ANODE, DIGITS, DELAY>::SevenSegmentDisplay(byte a, byte b, byte c, byte d, byte e, byte f, byte g, byte dp)
 {
 	pin_[0] = a;
 	pin_[1] = b;
@@ -91,8 +91,8 @@ SevenSegmentDisplay<ANODE, DIGITS>::SevenSegmentDisplay(byte a, byte b, byte c, 
 	clear ();
 }
 
-template <boolean ANODE, typename DIGITS>
-void SevenSegmentDisplay<ANODE, DIGITS>::printDigit(byte n, bool dp)
+template <boolean ANODE, typename DIGITS, unsigned DELAY>
+void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::printDigit(byte n, bool dp)
 {
 	byte m = SegmentTrait<ANODE>::digit[n];
 	for (byte i = 0; i < MAX_SEGMENTS - 1; ++i) {
@@ -102,19 +102,19 @@ void SevenSegmentDisplay<ANODE, DIGITS>::printDigit(byte n, bool dp)
 	digitalWrite(pin_[DP_IDX], dp ? !ANODE : ANODE);
 }
 
-template <boolean ANODE, typename DIGITS>
-void SevenSegmentDisplay<ANODE, DIGITS>::printUnsigned(unsigned n, byte dp)
+template <boolean ANODE, typename DIGITS, unsigned DELAY>
+void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::printUnsigned(unsigned n, byte dp)
 {
 	for (byte i = 0; i < DIGITS::N; ++i) {
 		pickDigit(i);
 		printDigit(n % 10, dp == i);
-		delay(10);
+		delay(DELAY / DIGITS::N);
 		n /= 10;
 	}
 }
 
-template <boolean ANODE, typename DIGITS>
-void SevenSegmentDisplay<ANODE, DIGITS>::printFloat(float n)
+template <boolean ANODE, typename DIGITS, unsigned DELAY>
+void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::printFloat(float n)
 {
 	unsigned upper = 10;
 	for (byte i = 0; i < DIGITS::N; ++i) {
@@ -126,8 +126,8 @@ void SevenSegmentDisplay<ANODE, DIGITS>::printFloat(float n)
 	}
 }
 
-template <boolean ANODE, typename DIGITS>
-void SevenSegmentDisplay<ANODE, DIGITS>::print(unsigned n, unsigned long duration)
+template <boolean ANODE, typename DIGITS, unsigned DELAY>
+void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::print(unsigned n, unsigned long duration)
 {
 	if (DIGITS::N > 1) {
 		if (duration) {
@@ -145,8 +145,8 @@ void SevenSegmentDisplay<ANODE, DIGITS>::print(unsigned n, unsigned long duratio
 	}
 }
 
-template <boolean ANODE, typename DIGITS>
-void SevenSegmentDisplay<ANODE, DIGITS>::print(float n, unsigned long duration)
+template <boolean ANODE, typename DIGITS, unsigned DELAY>
+void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::print(float n, unsigned long duration)
 {
 	if (DIGITS::N > 1) {
 		if (duration) {
@@ -160,16 +160,16 @@ void SevenSegmentDisplay<ANODE, DIGITS>::print(float n, unsigned long duration)
 	}
 }
 
-template <boolean ANODE, typename DIGITS>
-void SevenSegmentDisplay<ANODE, DIGITS>::clear()
+template <boolean ANODE, typename DIGITS, unsigned DELAY>
+void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::clear()
 {
 	for (byte i = 0; i < MAX_SEGMENTS; ++i) {
 		digitalWrite(pin_[i], ANODE);
 	}
 }
 
-template <boolean ANODE, typename DIGITS>
-void SevenSegmentDisplay<ANODE, DIGITS>::pickDigit(byte i)
+template <boolean ANODE, typename DIGITS, unsigned DELAY>
+void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::pickDigit(byte i)
 {
 	for (byte i = 0; i < DIGITS::N; ++i) {
 		digitalWrite(DIGITS::pin[i], !ANODE);
