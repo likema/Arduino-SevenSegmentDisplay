@@ -127,16 +127,16 @@ void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::printFloat(float n)
 }
 
 template <boolean ANODE, typename DIGITS, unsigned DELAY>
-void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::print(unsigned n, unsigned long duration)
+void SevenSegmentDisplay<ANODE, DIGITS, DELAY>::print(unsigned n, byte pt, unsigned long duration)
 {
 	if (DIGITS::N > 1) {
 		if (duration) {
 			unsigned long endTime = millis() + duration;
 			while (millis () < endTime) {
-				printUnsigned(n);
+				printUnsigned(n, pt);
 			}
 		} else {
-			printUnsigned(n);
+			printUnsigned(n, pt);
 		}
 	} else {
 		printDigit(n % 10);

@@ -27,6 +27,6 @@ void setup() {
 void loop() {
 	unsigned i = 9;
 	do {
-		ss.print(i, 2000);
+		ss.print(i, -1, 2000);
 	} while (i--);
 }
