@@ -1,6 +1,6 @@
-============================
+___________________________
 Arduino-SevenSegmentDisplay
-============================
+___________________________
 
 It is 7-segment display library for Arduino.
 
@@ -11,17 +11,17 @@ It is 7-segment display library for Arduino.
  * Only support to display positive integer and float number.
 
 Installation
-============================
+___________________________
 
 Please move the downloaded SevenSegmentDisplay directory to:
-
+```
 arduino-1.x/libraries/SevenSegmentDisplay
-
+```
 where arduino-1.x is your Arduino installation directory. In Ubuntu, it is 
-
+```
 /usr/share/arduino/libraries/SevenSegmentDisplay
-
+```
 Usage
-============================
+___________________________
 
 Please see the examples for usage.
